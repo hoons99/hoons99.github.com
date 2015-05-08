@@ -36,12 +36,12 @@
     </form>
 </div>
 <div id="map" style="width:100%;"></div>
-<div id="description" style="border-top:1px solid #ddd;margin-top:20px;padding-top:5px;display:none;width:100%;">
-    <h2 class="title">강남역</h2>
-    <p class="duration">기간 : 2014-05-06 ~ 2015-05-06</p>
+<div id="description" style="border-top:1px solid #ddd;margin-top:20px;padding-top:5px;width:100%;">
+    <h2 class="title"></h2>
+    <p class="duration"></p>
     <p class="keyword"></p>
-    <p class="text">좋네요ㅎㅎ</p>
-    <div class="images" style="width:100%;"></div>
+    <p class="text">어라운드 달콤창고는 이 글로부터 시작됐다고 합니다.</p>
+    <div class="images" style="width:100%;"><img src="./images/gangnam.jpg"></div>
 </div>
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=8f136b27e2e8cb047b70b7c4ac91b5d1&libraries=services"></script>
@@ -146,7 +146,8 @@
             endDate: '2015-05-14',
             images: [
                 './images/kwangju1.jpg',
-                './images/kwangju2.jpg'
+                './images/kwangju2.jpg',
+                './images/kwangju3.png'
             ]
         },
         {
@@ -169,8 +170,18 @@
             startDate: '2015-05-07',
             endDate: '2015-05-07',
             images: [
-                './images/nowon1.jpg',
-                './images/nowon2.jpg'
+                './images/suwon.jpg',
+                './images/suwon3.png',
+            ]
+        },
+        {
+            name: '수원시청역',
+            latlng: '37.26187212785104,127.03097891869068',
+            description: '수원시청역 개인 사물함',
+            keyword: '수원시청역달콤창고',
+            forceEnded: true,
+            images: [
+                './images/suwonsichung.png',
             ]
         },
         {
@@ -203,7 +214,7 @@
             startDate: '2015-01-12',
             endDate: '2015-02-07',
             images: [
-
+                './images/junganro.png'
             ]
         },
         {
@@ -222,10 +233,52 @@
             latlng: '37.24317866987126,127.08126011997419',
             description: '경희대 국제캠퍼스 생명과학대학건물 사물함',
             keyword: '경희대 달콤창고',
+            forceEnded: true,
             startDate: '2015-03-16',
             endDate: '2015-04-15',
             images: [
-                './images/khu.jpg'
+                './images/khu.png'
+            ]
+        },
+        {
+            name: '아주대',
+            latlng: '37.28241159321083,127.04438360643643',
+            description: '',
+            keyword: '아주대 달콤창고',
+            forceEnded: true,
+            images: [
+                './images/aju1.png',
+                './images/aju.png'
+            ]
+        },
+        {
+            name: '국회의사당역',
+            latlng: '37.528207712984866,126.91775290348362',
+            description: '',
+            keyword: '직장인의 힐링박스',
+            forceEnded: true,
+            images: [
+                './images/line9.png'
+            ]
+        },
+        {
+            name: '잠실역',
+            latlng: '37.51366864794273,127.10141462973444',
+            description: '',
+            keyword: '잠실역 달콤창고',
+            forceEnded: true,
+            images: [
+                './images/jamsil.png'
+            ]
+        },
+        {
+            name: '구미여자고등학교',
+            latlng: '36.14464058059795,128.33198159177323',
+            description: '학교에서 하는 달콤 창고 ㅎㅎ',
+            keyword: '구미 달콤창고',
+            forceEnded: true,
+            images: [
+                './images/gumi.png'
             ]
         },
         {
@@ -276,7 +329,7 @@
             map: map, // 마커를 표시할 지도
             position: latlng(items[i].latlng), // 마커를 표시할 위치
             title : items[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            image : (moment(items[i].endDate).isBefore(moment().format('YYYY-MM-DD'))) ? inactiveMarkerImage : activeMarkerImage, // 마커 이미지
+            image : (items[i].forceEnded || !items[i].endDate || moment(items[i].endDate).isBefore(moment().format('YYYY-MM-DD'))) ? inactiveMarkerImage : activeMarkerImage, // 마커 이미지
             clickable: true
         });
 
@@ -330,7 +383,15 @@
         var item = items[idx];
         $('#description .title').text(item.name);
         $('#description .text').text(item.description);
-        $('#description .duration').text('기간 : ' + item.startDate + '~' + item.endDate);
+        if (item.forceEnded) {
+            $('#description .duration').text('기간 종료됨');
+        } else if (item.startDate && item.endDate) {
+            $('#description .duration').text('기간 : ' + item.startDate + '~' + item.endDate);
+        } else if (item.endDate) {
+            $('#description .duration').text('기간 : ~' + item.endDate);
+        } else {
+            $('#description .duration').text('기간 알 수 없음');
+        }
         $('#description .keyword').text('어라운드 검색 키워드 : ' + item.keyword);
         $('#description .images').empty();
         for (var i = 0; item.images && i < item.images.length; i++) {
