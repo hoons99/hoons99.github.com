@@ -23,20 +23,20 @@
         }
         @media (max-width:450px){
             #map {
-                height: 230px;
+                height: 210px;
             }
         }
     </style>
 </head>
 <body style="max-width:800px;padding:0;margin:0;">
-<h1 style="padding:10px 0px 0px 0px;margin:0px;">어라운드 달콤창고</h1><span style="font-size:13px;color:#666;">등록문의는 jeonghuns99@hanmail.net 으로 주세요. (위치,기간 필수! 사진은 옵션!)</span>
+<h1 style="padding:10px 0px 0px 0px;margin:0px;">어라운드 달콤창고</h1><span style="font-size:13px;color:#666;">등록문의는 jeonghuns99@hanmail.net 으로 주세요. (위치,기간,사진 필수!)</span>
 <div style="margin:10px 0;width:100%;float:left;padding:0;">
     <form id="searchForm">
         <input type="text" id="search" style="height:30px;width:95%;float:left;"><button type="submit" style="float:left;width:100px;height:25px;margin-top:5px;margin-left:-110px;">검색</button>
     </form>
 </div>
 <div id="map" style="width:100%;"></div>
-<div id="description" style="border-top:1px solid #ddd;margin-top:30px;padding-top:10px;display:none;width:100%;">
+<div id="description" style="border-top:1px solid #ddd;margin-top:20px;padding-top:5px;display:none;width:100%;">
     <h2 class="title">강남역</h2>
     <p class="duration">기간 : 2014-05-06 ~ 2015-05-06</p>
     <p class="keyword"></p>
@@ -215,6 +215,27 @@
             endDate: '2015-06-01',
             images: [
 
+            ]
+        },
+        {
+            name: '경희대 국제캠퍼스',
+            latlng: '37.24317866987126,127.08126011997419',
+            description: '경희대 국제캠퍼스 생명과학대학건물 사물함',
+            keyword: '경희대 달콤창고',
+            startDate: '2015-03-16',
+            endDate: '2015-04-15',
+            images: [
+                './images/khu.jpg'
+            ]
+        },
+        {
+            name: '모란역',
+            latlng: '37.43397404635372,127.1293963568477',
+            description: '모란역 8호선 사물함',
+            keyword: '모란역 달콤상자',
+            startDate: '2015-05-06',
+            endDate: '2015-05-08',
+            images: [
             ]
         }
 
